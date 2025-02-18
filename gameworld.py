@@ -1,53 +1,44 @@
-# import pygame
-# import random
-# import sys
-
-# class GameWorld:
-
-#     def __init__(self) -> None:
-#         pygame.init()
-
-#         self._screen = pygame.display.set_mode((1080,640))
-#         self._running = True
-#         self._clock = pygame.time.Clock()
-
-#     def awake(self):
-#         pass
-
-#     def start(self):
-#         pass
-
-#     def update(self):
-
-#         while self._running:
-#             for event in pygame.event.get():
-#                 if event.type == pygame.QUIT:
-#                     self._running = False
-#             self._screen.fill("")
-
-#             pygame.display.flip()
-#             self._clock.tick(60)
-
-#         pygame.quit()
-
-# gameworld = GameWorld()
-
-# gameworld.awake()
-# gameworld.start()
-# gameworld.update()
 import pygame
 import random
 import sys
 
-# Initialize Pygame
-pygame.init()
+class GameWorld:
 
-# Set up the display
-width, height = 800, 600
-display = pygame.display.set_mode((width, height))
-pygame.display.set_caption("Whack-a-Mole Game")
+    def __init__(self) -> None:
+        pygame.init()
 
-# Define colors
+        self._screen = pygame.display.set_mode((1080,640))
+        self._running = True
+        self._clock = pygame.time.Clock()
+        pygame.display.set_caption("Whack-a-Mole Game")
+
+    def awake(self):
+        pass
+
+    def start(self):
+        pass
+
+    def update(self):
+
+        while self._running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self._running = False
+            self._screen.fill("")
+
+            pygame.display.flip()
+            self._clock.tick(60)
+
+        pygame.quit()
+
+gameworld = GameWorld()
+
+gameworld.awake()
+gameworld.start()
+gameworld.update()
+
+
+# Farver
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
@@ -107,8 +98,6 @@ while True:
     score_text = font.render(f"Score: {score}", True, WHITE)
     display.blit(score_text, (10, 10))
 
-    pygame.display.flip()
-    clock.tick(60)
 
     if start_time is None and circles[-1].filled:
         start_time = pygame.time.get_ticks()
