@@ -2,66 +2,47 @@ import pygame
 import random
 import sys
 
-class GameWorld:
+# Initialize Pygame
+pygame.init()
 
-    def __init__(self) -> None:
-        pygame.init()
-
-        self._screen = pygame.display.set_mode((1080,640))
-        self._running = True
-        self._clock = pygame.time.Clock()
-        pygame.display.set_caption("Whack-a-Mole Game")
-
-    def awake(self):
-        pass
-
-    def start(self):
-        pass
-
-    def update(self):
-
-        while self._running:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self._running = False
-            self._screen.fill("")
-
-            pygame.display.flip()
-            self._clock.tick(60)
-
-        pygame.quit()
-
-gameworld = GameWorld()
-
-gameworld.awake()
-gameworld.start()
-gameworld.update()
-
+# Display
+width, height = 800, 600
+display = pygame.display.set_mode((width, height))
+pygame.display.set_caption("Whack-a-Mole Game")
 
 # Farver
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 
-# Set up game variables
+# Variabler
 score = 0
 font = pygame.font.Font(None, 36)
 clock = pygame.time.Clock()
+
+# Grid
+GRID_SIZE = 3
+CELL_SIZE = width // GRID_SIZE
 
 class Circle:
     def __init__(self, filled, x):
         self.radius = 50
         self.x = x
-        self.y = height // 2
+        self.y = height // 3
         self.filled = filled
+
 
     def draw(self):
         color = RED if self.filled else BLACK
         pygame.draw.circle(display, color, (self.x, self.y), self.radius, 3 if not self.filled else 0)
 
 # Create the circles
-circles = [Circle(False, (i + 1) * (width // 6)) for i in range(4)]
-circles.append(Circle(True, random.choice([(i + 1) * (width // 6) for i in range(5)])))
+for row in range(GRID_SIZE):
+    for col in range(GRID_SIZE):
+        x= col*CELL_SIZE
+        y= row*CELL_SIZE
+circles = [Circle(False, (i + 1) * ((width//2) // 3)) for i in range(2)]
+circles.append(Circle(True, random.choice([(i + 1) * ((width//2) // 3) for i in range(3)])))
 
 start_time = None
 round_time = 1000  # 1 second in milliseconds
@@ -86,8 +67,8 @@ while True:
                     score += 1
                 else:
                     score -= 1
-                circles = [Circle(False, (i + 1) * (width // 6)) for i in range(4)]
-                circles.append(Circle(True, random.choice([(i + 1) * (width // 6) for i in range(5)])))
+                circles = [Circle(False, (i + 1) * ((width//2) // 3)) for i in range(2)]
+                circles.append(Circle(True, random.choice([(i + 1) * ((width //2) // 3) for i in range(3)])))
                 start_time = None
 
     display.fill(BLACK)
@@ -98,6 +79,56 @@ while True:
     score_text = font.render(f"Score: {score}", True, WHITE)
     display.blit(score_text, (10, 10))
 
+    pygame.display.flip()
+    clock.tick(60)
 
     if start_time is None and circles[-1].filled:
         start_time = pygame.time.get_ticks()
+
+
+
+#     import pygame
+
+# # Initialize Pygame
+# pygame.init()
+
+# # Screen dimensions
+# WIDTH, HEIGHT = 300, 300
+# screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
+# # Colors
+# WHITE = (255, 255, 255)
+# RED = (255, 0, 0)
+
+# # Grid settings
+# GRID_SIZE = 3
+# CELL_SIZE = WIDTH // GRID_SIZE  # Each cell will be 100x100 pixels (300/3)
+
+# # Object settings (e.g., spawning red squares)
+# square_size = 30
+
+# # Main loop
+# running = True
+# while running:
+#     screen.fill(WHITE)  # Fill the background with white
+
+#     for row in range(GRID_SIZE):
+#         for col in range(GRID_SIZE):
+#             # Calculate the position of the top-left corner of the cell
+#             x = col * CELL_SIZE
+#             y = row * CELL_SIZE
+
+#             # Draw a red square in each grid cell
+#             pygame.draw.rect(screen, RED, (x + (CELL_SIZE - square_size) // 2, 
+#                                            y + (CELL_SIZE - square_size) // 2, 
+#                                            square_size, square_size))
+
+#     pygame.display.flip()
+
+#     # Event handling
+#     for event in pygame.event.get():
+#         if event.type == pygame.QUIT:
+#             running = False
+
+# # Quit Pygame
+# pygame.quit()
