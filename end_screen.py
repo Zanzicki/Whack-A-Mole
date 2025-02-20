@@ -1,2 +1,59 @@
 import pygame
+import sys
 
+
+def end_screen(screen, font):
+    
+    width = screen.get_width()
+    height = screen.get_height()
+
+    button_width = 200
+    button_height = 50
+    color = (255, 255, 255)
+    color_light = (170, 170, 170)
+    color_dark = (100, 100, 100)
+
+    def draw_button(x, y, text):
+        
+        mouse = pygame.mouse.get_pos()
+        click = pygame.mouse.get_pressed()
+
+        if x <= mouse[0] <= x + button_width and y <= mouse[1] <= y + button_height:
+            pygame.draw.rect(screen, color_light, [x, y, button_width, button_height])
+            if click[0]:  # Venstre klik
+                return True
+        else:
+            pygame.draw.rect(screen, color_dark, [x, y, button_width, button_height])
+
+        # Tegn tekst
+        text_render = font.render(text, True, color)
+        screen.blit(text_render, (x + 50, y + 10))
+        return False
+
+    while True:
+        screen.fill((20, 20, 20))  # Baggrundsfarve
+
+        # Tegn knapper
+        back_clicked = draw_button(width / 3, height / 2.5, "Back to Menu")
+        quit_clicked = draw_button(width / 3, height / 2, "Quit")
+
+        # Tegn "Game Over" tekst
+        game_over_text = font.render("GAME OVER", True, color)
+        screen.blit(game_over_text, (width / 3 + 20, height / 3))
+
+        # Tjek hændelser
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+        
+        if back_clicked:
+            return  
+
+        
+        if quit_clicked:
+            pygame.quit()
+            sys.exit()
+
+        pygame.display.update()
