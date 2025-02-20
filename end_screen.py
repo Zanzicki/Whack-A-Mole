@@ -31,7 +31,7 @@ def end_screen(screen, font):
         return False
 
     while True:
-        screen.fill((20, 20, 20))  # Baggrundsfarve
+        screen.fill((60, 25, 60))  # Baggrundsfarve
 
         # Tegn knapper
         back_clicked = draw_button(width / 3, height / 2.5, "Back to Menu")

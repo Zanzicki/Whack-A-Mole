@@ -59,7 +59,7 @@ def menu():
 
         if start_clicked:
             print("Spillet starter...")
-            end_screen(screen, font)  # 🔹 Kald end_screen() fra end_screen.py
+            end_screen(screen, font)  #  Kald end_screen() fra end_screen.py
 
         if quit_clicked:
             pygame.quit()
