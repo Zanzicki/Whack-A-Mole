@@ -45,7 +45,7 @@ circles = [Circle(False, (i + 1) * ((width//2) // 3)) for i in range(2)]
 circles.append(Circle(True, random.choice([(i + 1) * ((width//2) // 3) for i in range(3)])))
 
 start_time = None
-round_time = 1000  # 1 second in milliseconds
+round_time = 800  # 0.8 sekunder i millisekunder
 
 # Main game loop
 while True:
@@ -86,20 +86,6 @@ while True:
         start_time = pygame.time.get_ticks()
 
 
-
-#     import pygame
-
-# # Initialize Pygame
-# pygame.init()
-
-# # Screen dimensions
-# WIDTH, HEIGHT = 300, 300
-# screen = pygame.display.set_mode((WIDTH, HEIGHT))
-
-# # Colors
-# WHITE = (255, 255, 255)
-# RED = (255, 0, 0)
-
 # # Grid settings
 # GRID_SIZE = 3
 # CELL_SIZE = WIDTH // GRID_SIZE  # Each cell will be 100x100 pixels (300/3)
@@ -129,6 +115,3 @@ while True:
 #     for event in pygame.event.get():
 #         if event.type == pygame.QUIT:
 #             running = False
-
-# # Quit Pygame
-# pygame.quit()
