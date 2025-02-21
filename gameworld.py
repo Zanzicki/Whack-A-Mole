@@ -44,46 +44,47 @@ for row in range(GRID_SIZE):
 circles = [Circle(False, (i + 1) * ((width//2) // 3)) for i in range(2)]
 circles.append(Circle(True, random.choice([(i + 1) * ((width//2) // 3) for i in range(3)])))
 
-start_time = None
-round_time = 1000  # 1 second in milliseconds
+if __name__ == "__main__":
+    start_time = None
+    round_time = 1000  # 1 second in milliseconds
 
-# Main game loop
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            if start_time is not None:
-                elapsed_time = pygame.time.get_ticks() - start_time
-                mouse_x, mouse_y = pygame.mouse.get_pos()
-                clicked_circle = None
-                for circle in circles:
-                    distance = ((mouse_x - circle.x) ** 2 + (mouse_y - circle.y) ** 2) ** 0.5
-                    if distance <= circle.radius and circle.filled:
-                        clicked_circle = circle
-                        break
-                if clicked_circle is not None and elapsed_time <= round_time:
-                    score += 1
-                else:
-                    score -= 1
-                circles = [Circle(False, (i + 1) * ((width//2) // 3)) for i in range(2)]
-                circles.append(Circle(True, random.choice([(i + 1) * ((width //2) // 3) for i in range(3)])))
-                start_time = None
+    # Main game loop
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if start_time is not None:
+                    elapsed_time = pygame.time.get_ticks() - start_time
+                    mouse_x, mouse_y = pygame.mouse.get_pos()
+                    clicked_circle = None
+                    for circle in circles:
+                        distance = ((mouse_x - circle.x) ** 2 + (mouse_y - circle.y) ** 2) ** 0.5
+                        if distance <= circle.radius and circle.filled:
+                            clicked_circle = circle
+                            break
+                    if clicked_circle is not None and elapsed_time <= round_time:
+                        score += 1
+                    else:
+                        score -= 1
+                    circles = [Circle(False, (i + 1) * ((width//2) // 3)) for i in range(2)]
+                    circles.append(Circle(True, random.choice([(i + 1) * ((width //2) // 3) for i in range(3)])))
+                    start_time = None
 
-    display.fill(BLACK)
+        display.fill(BLACK)
 
-    for circle in circles:
-        circle.draw()
+        for circle in circles:
+            circle.draw()
 
-    score_text = font.render(f"Score: {score}", True, WHITE)
-    display.blit(score_text, (10, 10))
+        score_text = font.render(f"Score: {score}", True, WHITE)
+        display.blit(score_text, (10, 10))
 
-    pygame.display.flip()
-    clock.tick(60)
+        pygame.display.flip()
+        clock.tick(60)
 
-    if start_time is None and circles[-1].filled:
-        start_time = pygame.time.get_ticks()
+        if start_time is None and circles[-1].filled:
+            start_time = pygame.time.get_ticks()
 
 
 

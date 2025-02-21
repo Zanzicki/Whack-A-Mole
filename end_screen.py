@@ -2,7 +2,8 @@ import pygame
 import sys
 
 
-def end_screen(screen, font):
+
+def end_screen(screen, font, score):
     
     width = screen.get_width()
     height = screen.get_height()
@@ -40,6 +41,9 @@ def end_screen(screen, font):
         # Tegn "Game Over" tekst
         game_over_text = font.render("GAME OVER", True, color)
         screen.blit(game_over_text, (width / 3 + 20, height / 3))
+        
+        score_text=font.render(f"Score: {score}", True, color)
+        screen.blit(score_text,(width/3+20, height/4))
 
         # Tjek hændelser
         for event in pygame.event.get():

@@ -1,6 +1,7 @@
 import pygame
 import sys
-from end_screen import end_screen  
+import subprocess
+ 
 class Menu:
     pygame.init()
 
@@ -58,8 +59,9 @@ def menu():
                 sys.exit()
 
         if start_clicked:
-            print("Spillet starter...")
-            end_screen(screen, font)  #  Kald end_screen() fra end_screen.py
+            pygame.quit()
+            subprocess.run(["python", "gameworld.py"])
+           # end_screen(screen, font)  #  Kald end_screen() fra end_screen.py
 
         if quit_clicked:
             pygame.quit()
