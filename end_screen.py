@@ -1,6 +1,6 @@
 import pygame
 import sys
-from menu import menu
+import menu
 
 
 
@@ -54,7 +54,7 @@ def end_screen(screen, font, score):
 
         
         if back_clicked:
-            return  
+            return menu.menu() 
 
         
         if quit_clicked:
