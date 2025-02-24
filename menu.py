@@ -59,8 +59,12 @@ def menu():
                 sys.exit()
 
         if start_clicked:
-            pygame.quit()
+            
+            pygame.mixer.music.load('background_music.wav')
+            pygame.mixer.music.play(-1)
+            
             subprocess.run(["python", "gameworld.py"])
+            pygame.quit()
            # end_screen(screen, font)  #  Kald end_screen() fra end_screen.py
 
         if quit_clicked:

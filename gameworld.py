@@ -47,6 +47,8 @@ circles.append(Circle(True, random.choice([(i + 1) * ((width//2) // 3) for i in 
 if __name__ == "__main__":
     start_time = None
     round_time = 1000  # 1 second in milliseconds
+    hit_sound = pygame.mixer.Sound("hit_sound.ogg")
+    miss_sound = pygame.mixer.Sound("miss_sound.flac")
 
     # Main game loop
     while True:
@@ -66,8 +68,10 @@ if __name__ == "__main__":
                             break
                     if clicked_circle is not None and elapsed_time <= round_time:
                         score += 1
+                        hit_sound.play()
                     else:
                         score -= 1
+                        miss_sound.play()
                     circles = [Circle(False, (i + 1) * ((width//2) // 3)) for i in range(2)]
                     circles.append(Circle(True, random.choice([(i + 1) * ((width //2) // 3) for i in range(3)])))
                     start_time = None
@@ -85,8 +89,6 @@ if __name__ == "__main__":
 
         if start_time is None and circles[-1].filled:
             start_time = pygame.time.get_ticks()
-
-
 
 #     import pygame
 
