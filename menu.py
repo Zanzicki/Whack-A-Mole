@@ -1,6 +1,6 @@
 import pygame
 import sys
-import subprocess
+
  
 class Menu:
     pygame.init()
@@ -45,6 +45,7 @@ def draw_button(x, y, text):
 
 
 def menu():
+    from gameworld import game_loop
     while True:
         screen.fill((60, 25, 60))  # Baggrundsfarve
 
@@ -63,8 +64,10 @@ def menu():
             pygame.mixer.music.load('background_music.wav')
             pygame.mixer.music.play(-1)
             
-            subprocess.run(["python", "gameworld.py"])
-            pygame.quit()
+            game_loop()
+            pygame.init()
+            
+            
            # end_screen(screen, font)  #  Kald end_screen() fra end_screen.py
 
         if quit_clicked:
@@ -73,5 +76,5 @@ def menu():
 
         pygame.display.update()
 
-
-menu()
+if __name__ == "__main__":
+    menu()
