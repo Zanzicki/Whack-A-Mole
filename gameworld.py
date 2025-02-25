@@ -53,6 +53,8 @@ last_circle_time = pygame.time.get_ticks()  # Time when last circle was created
 
 # Main game loop
 while True:
+    hit_sound = pygame.mixer.Sound("hit_sound.ogg")
+    miss_sound = pygame.mixer.Sound("miss_sound.flac")
     # Event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -68,9 +70,11 @@ while True:
                     break
             if clicked_circle is not None:
                 score += 1
+                pygame.mixer.Sound.play(hit_sound)
                 circles.remove(circle)
             else:
                 score -= 1
+                pygame.mixer.Sound.play(miss_sound)
 
     # Timer check: If 250ms has passed, generate a new circle
     current_time = pygame.time.get_ticks()
