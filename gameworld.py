@@ -60,7 +60,7 @@ def game_loop(screen, font):
     while game_running:
         
         
-        if pygame.time.get_ticks()>60000:
+        if pygame.time.get_ticks()>10000:
             game_running = False
             break   
     # Event handling

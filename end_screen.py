@@ -1,8 +1,8 @@
 import pygame
 import sys
-from menu import menu
+import menu
 
-pygame.init()
+
 
 def end_screen(screen, font, score):
     
@@ -37,7 +37,7 @@ def end_screen(screen, font, score):
         screen.fill((60, 25, 60))  # Baggrundsfarve
 
         # Tegn knapper
-        back_clicked = draw_button(width / 3, height / 2.5, "Back to Menu")
+        restart_clicked = draw_button(width / 3, height / 2.5, "Restart")
         quit_clicked = draw_button(width / 3, height / 2, "Quit")
 
         # Tegn "Game Over" tekst
@@ -54,9 +54,9 @@ def end_screen(screen, font, score):
                 sys.exit()
 
         
-        if back_clicked:
+        if restart_clicked:
             menu_running=False
-            return
+            menu.menu()
             
 
         
