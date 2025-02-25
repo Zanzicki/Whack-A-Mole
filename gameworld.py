@@ -3,9 +3,8 @@ import random
 import sys
 from end_screen import end_screen
 
-def game_loop():
-# Initialize Pygame
-    pygame.init()
+def game_loop(screen, font):
+
 
 # Display
     width, height = 1080, 640
@@ -55,13 +54,13 @@ def game_loop():
 
 # Timer tracking
     last_circle_time = pygame.time.get_ticks()  # Time when last circle was created
-
+    hit_sound = pygame.mixer.Sound("hit_sound.ogg")
+    miss_sound = pygame.mixer.Sound("miss_sound.flac")
 # Main game loop
     while game_running:
-        hit_sound = pygame.mixer.Sound("hit_sound.ogg")
-        miss_sound = pygame.mixer.Sound("miss_sound.flac")
         
-        if pygame.time.get_ticks()>10000:
+        
+        if pygame.time.get_ticks()>60000:
             game_running = False
             break   
     # Event handling
@@ -84,7 +83,10 @@ def game_loop():
                 else:
                     score -= 1
                     pygame.mixer.Sound.play(miss_sound)
-        
+        if score>=10:
+            circle_timer = 1000
+        if score>=20:
+            circle_timer = 800
 
     # Timer check: If 250ms has passed, generate a new circle
         current_time = pygame.time.get_ticks()
@@ -111,4 +113,4 @@ def game_loop():
         clock.tick(60)
 
     
-    end_screen(display,font,score)
+    return end_screen(display,font,score)

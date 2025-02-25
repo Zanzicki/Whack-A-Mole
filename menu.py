@@ -24,6 +24,7 @@ font = pygame.font.SysFont("corbel", 35)
 # Knapstørrelse
 button_width = 200
 button_height = 50
+menu_running = True
 
 
 def draw_button(x, y, text):
@@ -46,7 +47,7 @@ def draw_button(x, y, text):
 
 def menu():
     from gameworld import game_loop
-    while True:
+    while menu_running:
         screen.fill((60, 25, 60))  # Baggrundsfarve
 
         # Tegn knapper
@@ -64,7 +65,7 @@ def menu():
             pygame.mixer.music.load('background_music.wav')
             pygame.mixer.music.play(-1)
             
-            game_loop()
+            game_loop(screen, font)
             pygame.init()
             
             
