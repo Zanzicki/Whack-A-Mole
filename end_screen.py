@@ -37,7 +37,7 @@ def end_screen(screen, font, score):
         screen.fill((60, 25, 60))  # Baggrundsfarve
 
         # Tegn knapper
-        restart_clicked = draw_button(width / 3, height / 2.5, "Restart")
+        restart_clicked = draw_button(width / 3, height / 2.5, "Back To Menu")
         quit_clicked = draw_button(width / 3, height / 2, "Quit")
 
         # Tegn "Game Over" tekst
