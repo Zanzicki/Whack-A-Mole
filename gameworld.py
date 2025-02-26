@@ -3,6 +3,7 @@ import random
 import sys
 import end_screen
 
+
 def game_loop(screen, font):
 
 
@@ -92,7 +93,6 @@ def game_loop(screen, font):
             circle_timer = 1300
         if score>=20:
             circle_timer = 1100
-            screen.blit(img,(1080,640),)
         if score>=30:
             circle_timer = 900
         if score>=40:
@@ -106,6 +106,7 @@ def game_loop(screen, font):
 
     # Drawing
         display.fill(BLACK)
+        screen.blit(img,(0,0),)
 
     # Draw all circles
         for circle in circles:
