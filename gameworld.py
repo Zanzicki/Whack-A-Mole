@@ -106,7 +106,8 @@ def game_loop(screen, font):
 
     # Drawing
         display.fill(BLACK)
-        screen.blit(img,(0,0),)
+        if score >=20:
+            screen.blit(img,(0,0),)
 
     # Draw all circles
         for circle in circles:
