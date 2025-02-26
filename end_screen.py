@@ -14,6 +14,7 @@ def end_screen(screen, font, score):
     color = (255, 255, 255)
     color_light = (170, 170, 170)
     color_dark = (100, 100, 100)
+    menu_running = True
 
     def draw_button(x, y, text):
         
@@ -32,11 +33,11 @@ def end_screen(screen, font, score):
         screen.blit(text_render, (x + 50, y + 10))
         return False
 
-    while True:
+    while menu_running:
         screen.fill((60, 25, 60))  # Baggrundsfarve
 
         # Tegn knapper
-        back_clicked = draw_button(width / 3, height / 2.5, "Back to Menu")
+        restart_clicked = draw_button(width / 3, height / 2.5, "Back To Menu")
         quit_clicked = draw_button(width / 3, height / 2, "Quit")
 
         # Tegn "Game Over" tekst
@@ -53,8 +54,10 @@ def end_screen(screen, font, score):
                 sys.exit()
 
         
-        if back_clicked:
-            return menu.menu() 
+        if restart_clicked:
+            pygame.quit()
+            menu.main()
+            
 
         
         if quit_clicked:
