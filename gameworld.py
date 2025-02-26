@@ -19,6 +19,7 @@ def game_loop(screen, font):
 # Variables
     score = 0
     health = 10
+    time = 60000
     font = pygame.font.Font(None, 36)
     clock = pygame.time.Clock()
     previous_circle_timer = 0
@@ -87,10 +88,13 @@ def game_loop(screen, font):
                     health -=1
                     pygame.mixer.Sound.play(miss_sound)
         if score>=10:
-            circle_timer = 1000
+            circle_timer = 1300
         if score>=20:
-            circle_timer = 800
-
+            circle_timer = 1100
+        if score>=30:
+            circle_timer = 900
+        if score>=40:
+            circle_timer = 700
     # Timer check: If 250ms has passed, generate a new circle
         current_time = pygame.time.get_ticks()
         if current_time - last_circle_time >= circle_timer:
@@ -111,7 +115,12 @@ def game_loop(screen, font):
 
    # display life
         health_text = font.render(f"Health: {health}", True, WHITE)
-        display.blit(health_text, (10,40))     
+        display.blit(health_text, (10,40))
+
+    #display timer
+        timer = time - pygame.time.get_ticks()
+        timer_text = font.render(f"Timer: {timer}", True, WHITE)
+        display.blit(timer_text, (10,70))     
 
     # Update display
         pygame.display.flip()
