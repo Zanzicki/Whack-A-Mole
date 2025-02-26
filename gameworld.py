@@ -56,6 +56,7 @@ def game_loop(screen, font):
     last_circle_time = pygame.time.get_ticks()  # Time when last circle was created
     hit_sound = pygame.mixer.Sound("hit_sound.ogg")
     miss_sound = pygame.mixer.Sound("miss_sound.flac")
+     
 # Main game loop
     while game_running:
         
@@ -112,5 +113,5 @@ def game_loop(screen, font):
     # Limit FPS
         clock.tick(60)
 
-    
-    return end_screen(display,font,score)
+    end_screen(display,font,score)
+    return 

@@ -55,8 +55,8 @@ def end_screen(screen, font, score):
 
         
         if restart_clicked:
-            menu_running=False
-            menu.menu()
+            pygame.quit()
+            menu.main()
             
 
         
