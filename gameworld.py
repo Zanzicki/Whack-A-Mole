@@ -60,6 +60,7 @@ def game_loop(screen, font):
     hit_sound = pygame.mixer.Sound("hit_sound.ogg")
     miss_sound = pygame.mixer.Sound("miss_sound.flac")
     img = pygame.image.load("Whack-a-mole boss1.png")
+    img2 = pygame.image.load("Whack-a-mole boss2.png")
      
 # Main game loop
     while game_running:
@@ -108,6 +109,8 @@ def game_loop(screen, font):
         display.fill(BLACK)
         if score >=20:
             screen.blit(img,(0,0),)
+        if score >=30:
+            screen.blit(img2,(0,0),)
 
     # Draw all circles
         for circle in circles:
