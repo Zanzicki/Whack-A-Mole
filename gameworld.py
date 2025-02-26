@@ -1,7 +1,7 @@
 import pygame
 import random
 import sys
-from end_screen import end_screen
+import end_screen
 
 def game_loop(screen, font):
 
@@ -18,6 +18,7 @@ def game_loop(screen, font):
 
 # Variables
     score = 0
+    health = 10
     font = pygame.font.Font(None, 36)
     clock = pygame.time.Clock()
     previous_circle_timer = 0
@@ -61,7 +62,7 @@ def game_loop(screen, font):
     while game_running:
         
         
-        if pygame.time.get_ticks()>60000:
+        if pygame.time.get_ticks()>60000 or health<=0:
             game_running = False
             break   
     # Event handling
@@ -83,6 +84,7 @@ def game_loop(screen, font):
                     circles.remove(circle)
                 else:
                     score -= 1
+                    health -=1
                     pygame.mixer.Sound.play(miss_sound)
         if score>=10:
             circle_timer = 1000
@@ -107,11 +109,15 @@ def game_loop(screen, font):
         score_text = font.render(f"Score: {score}", True, WHITE)
         display.blit(score_text, (10, 10))
 
+   # display life
+        health_text = font.render(f"Health: {health}", True, WHITE)
+        display.blit(health_text, (10,40))     
+
     # Update display
         pygame.display.flip()
 
     # Limit FPS
         clock.tick(60)
 
-    end_screen(display,font,score)
+    end_screen.end_screen(display,font,score)
     return 
