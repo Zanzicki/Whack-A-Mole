@@ -10,6 +10,7 @@ def main():
     # Skærmopløsning
     res = (720, 720)
     screen = pygame.display.set_mode(res)
+    pygame.display.set_caption("Whack-a-Mole")
 
     # Font
     font = pygame.font.SysFont("corbel", 35)  # Opret skrifttype EFTER pygame er initialiseret

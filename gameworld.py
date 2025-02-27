@@ -10,7 +10,7 @@ def game_loop(screen, font):
 # Display
     width, height = 1080, 640
     display = pygame.display.set_mode((width, height))
-    pygame.display.set_caption("Whack-a-Mole Game")
+    pygame.display.set_caption("Whack-a-Mole")
 
 # Colors
     WHITE = (255, 255, 255)
